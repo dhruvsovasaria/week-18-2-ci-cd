@@ -12,11 +12,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: use nodejs
         uses: actions/setup-node@v3
         with:
           node-version: "20"
-      - name: i dependencies
+
+      - name: installs dependencies
         run: npm install
+
+      - name: generate prisma client
+        run: npm run db:generate
+
       - name: run build
         run: npm run build
