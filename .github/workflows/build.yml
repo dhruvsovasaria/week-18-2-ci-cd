@@ -1,0 +1,22 @@
+# space after colon is req
+# and two spaces as for indentation
+name: build succeeds on PR
+on:
+  pull_request:
+    branches:
+      - main
+      - dhruv
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: use nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: i dependencies
+        run: npm install
+      - name: run build
+        run: npm run build
