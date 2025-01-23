@@ -29,6 +29,7 @@ jobs:
 
       - name: Verify Pushed Image
         run: docker pull dhruvsovasaria/myuserapp:latest
+
       - name: pull and run on ec2
         uses: appleboy/ssh-action@master
         with:
