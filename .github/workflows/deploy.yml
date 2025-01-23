@@ -29,3 +29,14 @@ jobs:
 
       - name: Verify Pushed Image
         run: docker pull dhruvsovasaria/myuserapp:latest
+      - name: pull and run on ec2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker pull dhruvsovasaria/myuserapp:latest
+            sudo docker stop myuserapp || true
+            sudo docker rm myuserapp || true
+            sudo docker run -d -p 3005:3000 --name myuserapp dhruvsovasaria/myuserapp:latest
